@@ -1,0 +1,32 @@
+<section id="team">
+  <h1 class="about-title">Nuestro EQUIPO</h1>
+
+<div class="carousel-container">
+  <button class="nav-arrow left" (click)="updateCarousel(currentIndex - 1)">‹</button>
+  <div class="carousel-track">
+    <div
+      class="card"
+      *ngFor="let member of teamMembers; let i = index"
+      [ngClass]="getCardClass(i)"
+      (click)="updateCarousel(i)"
+    >
+      <img [src]="member.image" [alt]="'Team Member ' + (i + 1)" />
+    </div>
+  </div>
+  <button class="nav-arrow right" (click)="updateCarousel(currentIndex + 1)">›</button>
+</div>
+
+<div class="member-info">
+  <h2 class="member-name">{{ teamMembers[currentIndex].name }}</h2>
+  <p class="member-role">{{ teamMembers[currentIndex].role }}</p>
+</div>
+
+<div class="dots">
+  <div
+    class="dot"
+    *ngFor="let member of teamMembers; let i = index"
+    [class.active]="i === currentIndex"
+    (click)="updateCarousel(i)"
+  ></div>
+</div>
+</section>

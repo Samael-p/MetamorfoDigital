@@ -1,0 +1,147 @@
+
+
+.team-section {
+  padding: 8rem 2rem;
+  background: linear-gradient(to right, #dfe9f3, #ffffff);
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+
+  .team-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+  }
+
+  .team-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.6s ease, opacity 0.4s ease, filter 0.4s ease;
+    width: 100%;
+    max-width: 400px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    z-index: 1;
+    position: relative;
+
+    &:hover {
+      transform: rotateX(0deg) rotateY(0deg) scale(1.03);
+      z-index: 2;
+    }
+
+    &.active {
+    width: 300px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1.2);
+      z-index: 10;
+      box-shadow: 0 12px 60px rgba(0, 0, 0, 0.3);
+      opacity: 1 !important;
+      filter: none !important;
+      background: linear-gradient(to bottom, #ffffff, #767a76); /* Fondo degradado */
+      color: #333; /* Texto oscuro */
+      transition: transform 0.6s ease, opacity 0.4s ease, filter 0.4s ease;
+
+        .image-container {
+      border-radius: 0;          // elimina el círculo
+      border: none;              // elimina el borde
+      width: 150px;              // puedes aumentar el tamaño si quieres
+      height: 150px;
+      top: 0;
+      overflow: visible;         // para que no corte efectos visuales
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;     // para que el PNG sin fondo se vea completo
+        filter: drop-shadow(0 0 10px rgba(0, 123, 255, 0.7));  // sombra suave en la imagen para resaltar
+      }
+    }
+
+    }
+
+    &.inactive {
+      opacity: 0.2;
+      filter: blur(2px);
+      pointer-events: none;
+      transform: scale(0.95);
+      z-index: 0;
+    }
+
+    .image-container {
+      flex-shrink: 0;
+      width: 80px;
+      height: 80px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .info-container {
+      h3 {
+        margin: 0;
+        font-size: 1.2rem;
+        color: #333;
+      }
+
+      p {
+        margin: 0.3rem 0;
+        font-size: 0.9rem;
+        color: #555;
+
+        &.description {
+          font-size: 0.8rem;
+          color: #666;
+        }
+      }
+
+      .social-icons {
+        margin-top: 0.5rem;
+        a {
+          margin-right: 0.5rem;
+          color: #333;
+          font-size: 1.2rem;
+          transition: color 0.3s;
+
+          &:hover {
+            color: #007bff;
+          }
+        }
+      }
+    }
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.05); // leve sombreado opcional
+    backdrop-filter: blur(3px);
+  }
+}

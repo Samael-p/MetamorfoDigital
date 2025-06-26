@@ -1,0 +1,88 @@
+<section id="contact">
+<div class="containerContact">
+<div class="container2">
+  <p class="form-headingC">CONTÁCTANOS</p>
+
+  <div class="contactGrid">
+    <div class="contactBox">
+      <h3>Ubicación</h3>
+      <p>123 Calle Principal</p>
+    </div>
+
+    <div class="contactBox">
+      <h3>Teléfono</h3>
+      <p>+1 234 567 890</p>
+    </div>
+
+    <div class="contactBox">
+      <h3>Email</h3>
+      <p>correoe&#64;gmail.com</p>
+    </div>
+
+    <div class="contactBox">
+      <h3>Horario</h3>
+      <p>Lunes a Viernes<br>9am - 5pm</p>
+    </div>
+  </div>
+</div>
+
+<div class="container1">
+    <form  id="form" class="form">
+        <p class="form-heading">ENVIA UN MENSAJE</p>
+    
+        <div class="form-field">
+            <input 
+            id="nombre"
+            required="" 
+            placeholder="Nombre"
+            class="input-field"
+            type="text" 
+            />
+        </div>
+    
+        <div class="form-field">
+            <input 
+            id="email"
+            type="email"
+            placeholder="Email" 
+            class="input-field" 
+            />
+        </div>
+        
+        <!-- Nuevo campo para número de teléfono con código de país -->
+        <div class="numcontry">
+        <div class="form-field contry-field">
+            <input 
+                id="codeContry"
+                required="" 
+                placeholder="+1" 
+                class="input-field country-code" 
+                type="text" maxlength="4" />
+            </div>
+        <div class="form-field phone-field">
+            <input 
+            id="telefono"
+            required="" 
+            placeholder="Phone Number" 
+            class="input-field phone-number" 
+            type="tel" />
+        </div>
+        </div>
+        <div class="form-fieldM">
+            <textarea 
+            id="mensaje"
+            required="" 
+            placeholder="Message" 
+            cols="3" rows="1"   
+            class="input-fieldM"></textarea>
+        </div>
+    
+        <button
+        type="submit" 
+        class="sendMessage-btn">Send Message</button>
+    </form>
+    
+  
+</div>
+</div>
+</section>

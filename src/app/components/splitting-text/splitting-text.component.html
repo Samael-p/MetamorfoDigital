@@ -1,0 +1,16 @@
+<span #container>
+  <ng-container *ngFor="let item of items; let i = index">
+    <span
+      #char
+      *ngIf="visible"
+      [@itemAnim]
+      [style.display]="'inline-block'"
+      [style.whiteSpace]="type === 'chars' ? 'pre' : 'normal'"
+      [style.animationDelay]="getDelay(i)"
+    >
+      {{ item }}
+    </span>
+    <ng-container *ngIf="type === 'words'"> </ng-container>
+    <br *ngIf="type === 'lines' && i < items.length - 1" />
+  </ng-container>
+</span>

@@ -1,0 +1,137 @@
+*{
+  padding: 0;
+  margin: 0;
+  
+}
+#menuNav {
+  position: absolute;
+  bottom: -750px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40%;
+  z-index: 999;
+  transition: all 0.3s ease;
+  
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.metaDContent{
+  width:120px;
+  height:60px;
+  
+}
+.metaDigLogo{
+  display: none;
+}
+
+.sticky {
+  position: fixed !important;
+  top: 25px !important;
+  bottom: auto !important;
+  transform: translateX(-50%);
+  .navContainer{
+  background: rgba(255, 255, 255, 0.13);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+.metaDigLogo{
+  display: block;
+}
+
+}
+
+
+
+
+
+ul{
+  text-decoration: none;
+  list-style: none;
+}
+
+.navContainer{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction:row ;
+  gap:5rem;
+}
+
+ul{
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  
+}
+
+
+/*#logoSvg path {
+  filter: drop-shadow(0 0 0px white);
+  animation: glow 3s ease-in-out forwards;
+}
+
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px white);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px white);
+  }
+}
+*/
+
+#logoSvg {
+  transform: scale(0.8);
+  opacity: 0;
+  animation: scaleIn 1.5s ease-out forwards;
+  animation-delay: 0s;
+}
+
+@keyframes scaleIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+@media (max-width: 768px) {
+  #menuNav {
+    position: fixed !important;
+    bottom: 0 !important;
+    top: auto !important;
+    left: 0;
+    width: 100%;
+    transform: none !important;
+    background: white; // o el fondo que uses
+    border-top: 1px solid #ccc; // opcional, como una app
+    z-index: 999;
+  }
+
+  .navContainer {
+    justify-content: space-around;
+    gap: 0;
+    padding: 0.5rem 0;
+  }
+
+  ul {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    display: none; // si quieres ocultar el logo en móviles
+  }
+
+  a.menu {
+    font-size: 0.9rem;
+  }
+}
