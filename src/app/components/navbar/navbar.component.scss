@@ -5,10 +5,11 @@
 }
 #menuNav {
   position: absolute;
-  bottom: -750px;
+  top: 20px;
   left: 50%;
+  
   transform: translateX(-50%);
-  width: 40%;
+  width: 70%;
   z-index: 999;
   transition: all 0.3s ease;
   
@@ -32,11 +33,11 @@
 
 .sticky {
   position: fixed !important;
-  top: 25px !important;
+  top: 2px !important;
   bottom: auto !important;
   transform: translateX(-50%);
   .navContainer{
-  background: rgba(255, 255, 255, 0.13);
+  background: rgba(0, 0, 0, 0.726);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   border-radius: 20px;
@@ -44,6 +45,10 @@
 }
 .metaDigLogo{
   display: block;
+}
+
+a {
+  color: rgb(255, 255, 255);
 }
 
 }

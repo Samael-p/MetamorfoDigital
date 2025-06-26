@@ -13,6 +13,6 @@ export class NavbarComponent {
   @HostListener('window:scroll', [])
   onWindowScroll() {
     const scrollY = window.scrollY || window.pageYOffset;
-    this.isSticky = scrollY > 750; // puedes ajustar ese número
+    this.isSticky = scrollY > 4; // puedes ajustar ese número
   }
 }
