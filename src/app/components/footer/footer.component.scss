@@ -2,55 +2,27 @@
 
 
 $link-light-grey: #6c757d;
-$primary-orange: #da1717; //before: fed136
+$primary-orange: #53bdcf; //before: fed136
 $footer-background-light-grey: #212529;
 $footer-background-grey: #1a1d2000;
 $social-buttons-circle-dark-grey: #1a1d20;
 
-
-
-#logoSvg path {
-    fill: transparent;
-    stroke: #ffffff;
-    stroke-width: 1;
-    stroke-dasharray: 50;
-    stroke-dashoffset: 50;
-    animation: textAnimation 4s ease-in-out infinite alternate;
-}
-
-//$random-colors: (#974b39, #33ff57, #3357ff, #f1c40f, #9b59b6, #e74c3c  );
-//@keyframes textAnimation {
-//  0% { nstroke-dashoffset: 50;
-//   fill: nth($random-colors, random(length($random-colors)));
-//  }
-//  50% {
-//      fill: nth($random-colors, random(length($random-colors)));
-//      stroke-dashoffset: 0;
-//  }
-//  100% {
-//       fill: nth($random-colors, random(length($random-colors)));
-//       stroke-dashoffset: 50;
-//   }
-//}
-
-@keyframes textAnimation {
-    0% {
-        stroke-dashoffset: 50;
-        fill: #ffffff;
-    }
-    50% {
-        fill: transparent;
-        stroke-dashoffset: 0;
-    }
-    100% {
-        fill: #ffffff;
-        stroke-dashoffset: 50;
-    }
-}
-//.col-md-4:nth-child(even) { background: blue;}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   
+}
 
-//.col-md-4:nth-child(odd) {background: red;}
+.metaDContent{
+  width:120px;
+  height:60px;
+  
+}
+.metaDigLogo{
+  display: block;
+}
 
 a {
   color: $link-light-grey;
@@ -73,10 +45,8 @@ footer{
   overflow: hidden;
   transform-origin: top; /* Escalar desde la parte superior */
   transition: transform 0.3s ease-out;
- z-index: -1;
-  .logoFooter {
-    transition: transform 0.3s ease-out;
-  }
+ 
+ 
 
   .footer-column,
   .row.text-center {

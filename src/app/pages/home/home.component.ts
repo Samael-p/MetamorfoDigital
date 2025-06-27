@@ -22,7 +22,7 @@ interface Dot {
 
 @Component({
   selector: 'app-home',
-  imports: [MetaballsComponent, NavbarComponent, SplittingTextComponent],
+  imports: [ NavbarComponent, SplittingTextComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

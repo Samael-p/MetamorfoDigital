@@ -42,7 +42,12 @@
   -webkit-backdrop-filter: blur(9px);
   border-radius: 20px;
   border: 1px solid rgba(255, 255, 255, 0.3);
+  @media (max-width: 768px) {
+  border: none;
+    background-color: #212529;
+    border-radius: 0;
 }
+  }
 .metaDigLogo{
   display: block;
 }
