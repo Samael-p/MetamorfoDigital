@@ -14,34 +14,34 @@ export class TeamComponent {
 
   teamMembers = [
     {
-      name: 'Emily Kim',
+      name: 'Name1',
       role: 'Founder',
-      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=3687&auto=format&fit=crop'
+      image: 'https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal'
     },
     {
-      name: 'Michael Steward',
+      name: 'Name2 ',
       role: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop'
+      image: 'https://https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop'
     },
     {
-      name: 'Emma Rodriguez',
+      name: 'Name3',
       role: 'Lead Developer',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop'
+      image: 'https://images.https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal.com/photo-1573496359142-b8d87734a5a2?w=900&auto=format&fit=crop'
     },
     {
-      name: 'Julia Gimmel',
+      name: 'Name4',
       role: 'UX Designer',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal-1494790108377-be9c29b29330?w=900&auto=format&fit=crop'
     },
     {
-      name: 'Lisa Anderson',
+      name: 'Name5',
       role: 'Marketing Manager',
-      image: 'https://images.unsplash.com/photo-1655249481446-25d575f1c054?w=900&auto=format&fit=crop'
+      image: 'https://images.unsplash.com/photo-1655249481446-https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal?w=900&auto=format&fit=crop'
     },
     {
-      name: 'James Wilson',
+      name: 'Name6',
       role: 'Product Manager',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop'
+      image: 'https://images.unsplash.https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal/photo-1519085360753-af0119f7cbe7?q=80&w=3687&auto=format&fit=crop'
     }
   ];
 

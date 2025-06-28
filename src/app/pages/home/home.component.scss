@@ -70,7 +70,7 @@ app-navbar{
   text-align: center;
   position: relative;    // Para que estén sobre el DotGrid
   z-index: 1;            // Para que estén encima del DotGrid
-///border: 2px solid red;
+  //border: 2px solid red;
   > p {
     color: var(--surface-1);
     letter-spacing: var(--font-letterspacing-3);
