@@ -20,22 +20,31 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  flex-direction: row;
 }
+#Metamorfo,
+  #digital {
+    fill: #000000;
+  }
+
+
 
 .metaDContent{
   width:120px;
   height:60px;
   
 }
-.metaDigLogo{
-  display: none;
-}
+
 
 .sticky {
   position: fixed !important;
   top: 2px !important;
   bottom: auto !important;
   transform: translateX(-50%);
+  #Metamorfo,
+  #digital {
+    fill: #ffffff;
+  }
   .navContainer{
   background: rgba(0, 0, 0, 0.726);
   backdrop-filter: blur(9px);
@@ -75,6 +84,7 @@ a {
 }
 
 .navContainer{
+  position: relative;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -105,19 +115,7 @@ ul{
 }
 */
 
-#logoSvg {
-  transform: scale(0.8);
-  opacity: 0;
-  animation: scaleIn 1.5s ease-out forwards;
-  animation-delay: 0s;
-}
 
-@keyframes scaleIn {
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
 
 
 @media (max-width: 768px) {
@@ -145,7 +143,16 @@ ul{
   }
 
   .logo {
-    display: none; // si quieres ocultar el logo en móviles
+    display: none;
+    position: absolute; // si quieres ocultar el logo en móviles
+    top:-600px;
+    transform: scale(0.7);
+    left: 10px;
+
+  }
+  #Metamorfo,
+  #digital {
+    fill: #000000;
   }
 
   a.menu {

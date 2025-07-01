@@ -4,12 +4,12 @@
   class="sector"
   *ngFor="let servicio of servicios; let i = index"
   [style.--angle]="getAngle(i) + 'deg'"
-  [style.transform]="'rotate(' + getAngle(i) + 'deg) translateY(-80%)'"
+  [style.transform]="'rotate(' + getAngle(i) + 'deg) translateY(-100%)'"
   [style.transitionDelay]="getAnimationDelay(i)"
 >
 
       <div class="sector-content" [style.transform]="'rotate(' + (-getAngle(i)) + 'deg)'">
-        <div class="icon">{{ servicio.icono }}</div>
+        <div class="icon"> <img [src]="servicio.imagen" alt="{{ servicio.nombre }}" /></div>
         <div class="label">{{ servicio.nombre }}</div>
       </div>
     </div>

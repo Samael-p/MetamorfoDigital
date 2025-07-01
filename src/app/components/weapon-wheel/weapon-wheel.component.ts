@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common';
 })
 export class WeaponWheelComponent {
   servicios = [
-    { nombre: 'Desarrollo web', icono: '' },
-    { nombre: '3D', icono: '' },
-    { nombre: 'Branding', icono: '' },
-    { nombre: 'Automatización de procesos', icono: '' },
-    { nombre: 'Producción multimedia', icono: '' },
-    { nombre: 'Cursos y Talleres', icono: '' },
+    { nombre: 'Desarrollo web', imagen: 'assets/assetsService/webDev.png' },
+    { nombre: '3D', imagen: 'assets/assetsService/3D.png' },
+    { nombre: 'Branding', imagen: 'assets/assetsService/Branding.png' },
+    { nombre: 'Automatización de procesos', imagen: 'assets/assetsService/Automatizacion.png' },
+    { nombre: 'Producción multimedia', imagen: 'assets/assetsService/Producción Multimedia.png' },
+    { nombre: 'Cursos y Talleres', imagen: 'assets/assetsService/Cursos y Talleres.png' },
     
   ];
    getAngle(index: number): number {

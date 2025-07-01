@@ -15,6 +15,10 @@
   display: flex;              // Para acomodar container1 y container2 lado a lado
   justify-content: center;
   align-items: center;
+  @media (max-width: 992px) {
+  flex-direction: column;
+  padding: 1rem;
+}
 
   .dot-grid {
     position: absolute;
@@ -48,12 +52,14 @@
   z-index: 1000;
   //border: 2px solid rgb(9, 111, 114);
 }
-app-navbar{
- // border: solid 2px rgb(241, 239, 239);
-  justify-content: space-between;
-  width: 40%;
-  height: 55px;
-  
+
+
+app-splitting-text{
+  font-size: 32px;
+  @media (max-width: 992px) {
+  font-size: 29px;
+}
+
 }
 
 
@@ -79,21 +85,12 @@ app-navbar{
 
 // Ocultar container2 (metaballs) en pantallas pequeñas
 @media (max-width: 992px) {
-  .container2 {
-    display: none;
-  }
-
+  .container2,
   .container1{
-  height: 70%;
-  width: 45%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;    // Para que estén sobre el DotGrid
-  z-index: 1;            // Para que estén encima del DotGrid
-///border: 2px solid red;
+  height: 50%;
+  width: 100%;
+  
+
   > p {
     color: var(--surface-1);
     letter-spacing: var(--font-letterspacing-3);
