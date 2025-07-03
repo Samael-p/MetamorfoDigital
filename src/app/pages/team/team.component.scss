@@ -44,7 +44,7 @@
 
 .carousel-container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   height: 450px;
   position: relative;
   perspective: 1000px;
@@ -75,13 +75,12 @@
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
+    @media (max-width: 768px) {
+  width: 280px;
+  height: 380px;
+}
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
+  
 
   &.center {
     z-index: 10;
@@ -248,8 +247,8 @@
   }
 
   .card {
-    width: 200px;
-    height: 280px;
+    width: 210px;
+    height: 310px;
   }
 
   .card.left-2 {

@@ -367,3 +367,10 @@ app-metaballs {
 .social-clock__button:nth-child(10) {
   --index: 9;
 }
+
+
+app-navbar{
+  @media (max-width: 992px) {
+    background: transparent ;
+  }
+}

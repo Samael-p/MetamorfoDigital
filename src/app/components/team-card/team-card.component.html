@@ -1,0 +1,27 @@
+<div class="team-card">
+  <div class="status-dot" *ngIf="isOnline"></div>
+
+  <div class="avatar">
+    <img [src]="member.image" alt="{{ member.name }}" />
+  </div>
+  <div>
+  <h3>{{ member.name }}</h3>
+  <h4>{{ member.subtitle }}</h4></div>
+  <p class="role">{{ member.role }}</p>
+  <p class="text">{{ member.text }}</p>
+
+
+
+  <div class="actions">
+  <a
+    *ngFor="let social of limitedSocials"
+    class="action-btn"
+    [href]="social.url"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <i [class]="social.icon"></i>
+  </a>
+</div>
+
+</div>
