@@ -30,7 +30,7 @@ export class TeamComponent {
     {
       name: 'Name2 ',
       role: 'Creative Director',
-      image: 'https://https://via.placeholder.com/300x200/222/aaa?text=Imagen+Temporal.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=3870&auto=format&fit=crop',
+      image: 'assets/assetsTeam/sam.jpeg',
       socials: [
       { icon: 'fab fa-twitter', url: 'https://twitter.com/' },
       { icon: 'fab fa-dribbble', url: 'https://dribbble.com/' },

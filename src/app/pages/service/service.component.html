@@ -1,35 +1,69 @@
 <section id="servicios">
 
-<div class="team-section" [class.no-scroll]="isCardActive">
-  <div class="team-container">
-    <div
-      *ngFor="let member of team"
-      class="team-card"
-      [class.active]="activeMember === member"
-      [class.inactive]="activeMember && activeMember !== member"
-      (click)="activateCard(member, $event)"
-    >
-      <div class="image-container">
-        <img [src]="member.image" alt="{{ member.name }}" />
-      </div>
-      <div class="info-container">
-        <h3>{{ member.name }}</h3>
-        <p>{{ member.role }}</p>
-        <p class="description">{{ member.description }}</p>
-        <div class="social-icons">
-          <a *ngFor="let social of member.socials" [href]="social.link" target="_blank">
-            <i [class]="social.icon"></i>
-          </a>
+<!-- Línea central (posición fija) -->
+<div class="center-line" id="scroll-line"></div>
+
+<section class="services-section">
+  <div class="container">
+    <div class="header animate-fadeIn">
+      <h2 class="fancy-title">
+        Nuestros Servicios
+      </h2>
+      <p>
+        Ofrecemos una amplia gama de servicios diseñados para satisfacer tus necesidades y superar tus expectativas.
+      </p>
+    </div>
+
+    <div class="cards-container">
+      <ng-container *ngFor="let service of services; let i = index">
+        <div
+          class="service-block"
+          [ngClass]="{'row-reverse': service.reverse }"
+          [attr.id]="getAnchorId(service.title)"
+          [attr.data-video-id]="service.videoId"
+        >
+          <div
+            class="service-card"
+            [ngClass]="getSlideInClass(service.reverse, i, 'card')"
+            [style.--delay]="getDelay(i, 'card')"
+          >
+            <div class="flip-container">
+              <div class="card-face card-front">
+                <div [ngClass]="service.iconColor" class="icon-wrapper" [innerHTML]="service.icon"></div>
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.shortDesc }}</p>
+              </div>
+              <div class="card-face card-back">
+                <h3>{{ service.title }}</h3>
+                <p>{{ service.Desc1 }}</p>
+                <p>{{ service.Desc2 }}</p>
+                <p>{{ service.Desc3 }}</p>
+                <p>{{ service.Desc4 }}</p>
+                <div class="action">
+                  <button href="#" [ngClass]="service.buttonClass">Saber Más</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="video-wrapper"
+            [ngClass]="getSlideInClass(service.reverse, i, 'video')"
+            [style.--delay]="getDelay(i, 'video')"
+          >
+            <div
+              class="video-placeholder"
+              [style.backgroundImage]="'url(' + service.placeholder + ')'"
+            ></div>
+            <div
+              class="youtube-player youtube-player-hidden"
+              [id]="'player-' + service.videoId"
+            ></div>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
   </div>
+</section>
 
-  <!-- Overlay para cerrar al hacer clic fuera -->
-  <div
-    class="overlay"
-    *ngIf="activeMember"
-    (click)="deactivateCard()"
-  ></div>
-</div>
 </section>

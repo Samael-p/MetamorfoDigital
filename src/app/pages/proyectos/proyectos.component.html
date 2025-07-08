@@ -1,3 +1,240 @@
 <section id="proyectos">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sección de Proyectos</title>
+    <style>
+        /* Estilos generales para el cuerpo */
+        body {
+            font-family: 'Inter', sans-serif; /* Usando Inter como fuente principal */
+            margin: 0;
+            padding: 20px;
+            background-color: #772c2c;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Estilos para la sección principal de proyectos */
+        .projects-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Estilos para el título de la sección */
+        .projects-section h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        /* Contenedor de los proyectos - Flexbox para el diseño responsivo */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que los elementos salten de línea */
+            justify-content: center; /* Centra los elementos horizontalmente */
+            gap: 24px; /* Espacio entre los proyectos */
+            max-width: 1200px; /* Ancho máximo del contenedor */
+            margin: 0 auto; /* Centra el contenedor en la página */
+            padding: 0 10px; /* Pequeño padding para evitar que los items toquen los bordes en móviles */
+        }
+
+        /* Estilos para cada ítem de proyecto */
+        .project-item {
+            background-color: #fff;
+            border-radius: 12px; /* Bordes más redondeados */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más pronunciada */
+            overflow: hidden;
+            position: relative; /* Necesario para posicionar el overlay */
+            width: 380px; /* Ancho fijo para la tarjeta */
+            height: 250px; /* Alto fijo para la tarjeta, haciéndola rectangular */
+            text-align: left;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición para hover */
+            cursor: pointer;
+        }
+
+        /* Efecto de escala y sombra al pasar el ratón */
+        .project-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Estilos para la imagen del proyecto */
+        .project-image {
+            width: 100%;
+            height: 100%; /* La imagen llena la tarjeta */
+            object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+            filter: grayscale(100%) opacity(0.7); /* Blanco y negro y opaco */
+            transition: filter 0.5s ease; /* Transición suave para el efecto de filtro */
+            border-radius: 12px; /* Bordes redondeados para la imagen también */
+        }
+
+        /* Efecto de color al pasar el ratón sobre el ítem del proyecto */
+        .project-item:hover .project-image {
+            filter: grayscale(0%) opacity(1); /* Color normal y opacidad completa */
+        }
+
+        /* Estilos para el overlay de información (título y descripción) */
+        .project-overlay {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 50%; /* Ocupa la mitad inferior de la tarjeta */
+            background-color: rgba(255, 255, 255, 0.1); /* Fondo semi-transparente para glassmorphism */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque para glassmorphism */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centra el contenido verticalmente dentro del overlay */
+            align-items: center;
+            text-align: center;
+            color: #fff; /* Color de texto blanco para contraste */
+            padding: 10px 20px; /* Ajusta el padding para el espacio más pequeño */
+            opacity: 0; /* Oculto por defecto */
+            transition: opacity 0.5s ease; /* Transición suave para la aparición del overlay */
+            border-bottom-left-radius: 12px; /* Solo redondea las esquinas inferiores */
+            border-bottom-right-radius: 12px;
+            box-sizing: border-box; /* Incluir padding en el ancho/alto */
+        }
+
+        /* Mostrar el overlay al pasar el ratón */
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        /* Estilos para el título del proyecto en el overlay */
+        .project-overlay h3 {
+            margin-top: 0;
+            font-size: 1.5em; /* Tamaño de fuente ajustado para el espacio */
+            color: #fff; /* Color blanco para el título */
+            margin-bottom: 5px; /* Espacio reducido */
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
+            transform: translateY(20px); /* Posición inicial para la animación */
+            opacity: 0; /* Opacidad inicial para la animación */
+            transition: transform 0.5s ease, opacity 0.5s ease; /* Transición para la animación */
+        }
+
+        /* Estilos para la descripción del proyecto en el overlay */
+        .project-overlay p {
+            color: #eee; /* Color ligeramente más claro para la descripción */
+            font-size: 0.9em; /* Tamaño de fuente ajustado para el espacio */
+            line-height: 1.3; /* Espaciado de línea ajustado */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Sombra para mejor legibilidad */
+            transform: translateY(20px); /* Posición inicial para la animación */
+            opacity: 0; /* Opacidad inicial para la animación */
+            transition: transform 0.5s ease 0.1s, opacity 0.5s ease 0.1s; /* Transición con un pequeño retraso */
+        }
+
+        /* Animación de entrada para el título y la descripción al hacer hover */
+        .project-item:hover .project-overlay h3,
+        .project-item:hover .project-overlay p {
+            transform: translateY(0); /* Posición final */
+            opacity: 1; /* Opacidad final */
+        }
+
+        /* Media Queries para el diseño responsivo */
+
+        /* Para pantallas pequeñas (móviles): 1 columna */
+        @media (max-width: 639px) {
+            .project-item {
+                width: 100%; /* Ocupa todo el ancho disponible */
+                max-width: 380px; /* Pero no excede el tamaño de la tarjeta fija */
+            }
+        }
+
+        /* Para 2 proyectos (sm: 640px y más) */
+        @media (min-width: 640px) {
+            .projects-container {
+                justify-content: center; /* Centra los elementos */
+            }
+            .project-item {
+                width: calc(50% - 12px); /* Dos columnas con un gap de 24px */
+                max-width: 380px; /* Mantiene el tamaño máximo */
+            }
+        }
+
+        /* Para 3 proyectos (md: 768px y más) */
+        @media (min-width: 768px) {
+            .projects-container {
+                justify-content: center; /* Centra los elementos */
+            }
+            .project-item {
+                width: calc(33.333% - 16px); /* Tres columnas con un gap de 24px */
+                max-width: 380px; /* Mantiene el tamaño máximo */
+            }
+        }
+
+        /* Para pantallas más grandes (lg: 1024px y más) - Se mantiene a 3 por fila */
+        @media (min-width: 1024px) {
+            .projects-container {
+                justify-content: center; /* Centra los elementos */
+            }
+            .project-item {
+                width: calc(33.333% - 16px); /* Tres columnas con un gap de 24px */
+                max-width: 380px; /* Mantiene el tamaño máximo */
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="projects-section">
+        <h2>PROYECTOS</h2>
+        <div class="projects-container">
+            <!-- Project Item 1 -->
+            <div class="project-item">
+                <img src="https://images.unsplash.com/photo-1494500764479-0c8f2919a3d8?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHBhaXNhamV8ZW58MHx8MHx8fDA%3D" alt="Proyecto 1"
+                    class="project-image">
+                <div class="project-overlay">
+                    <h3>Proyecto de Diseño Web</h3>
+                    <p>Un sitio web moderno y responsivo para una startup tecnológica.</p>
+                </div>
+            </div>
+
+            <!-- Project Item 2 -->
+            <div class="project-item">
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGxhbmRzY2FwZXxlbnwwfHwwfHx8MA%3D%3D" alt="Proyecto 2"
+                    class="project-image">
+                <div class="project-overlay">
+                    <h3>Aplicación Móvil de Viajes</h3>
+                    <p>Una aplicación intuitiva para planificar y organizar tus aventuras.</p>
+                </div>
+            </div>
+
+            <!-- Project Item 3 -->
+            <div class="project-item">
+                <img src="https://images.unsplash.com/photo-1501854140803-b60167160815?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fG5hdHVyZXxlbnwwfHwwfHx8MA%3D%3D" alt="Proyecto 3"
+                    class="project-image">
+                <div class="project-overlay">
+                    <h3>Sistema de Gestión de Inventario</h3>
+                    <p>Solución robusta para el seguimiento y control de productos en tiempo real.</p>
+                </div>
+            </div>
+
+            <!-- Project Item 4 -->
+            <div class="project-item">
+                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8bW91bnRhaW5zfGVufDB8fDB8fHww" alt="Proyecto 4"
+                    class="project-image">
+                <div class="project-overlay">
+                    <h3>Plataforma de E-learning</h3>
+                    <p>Cursos interactivos y recursos educativos en línea.</p>
+                </div>
+            </div>
+
+            <!-- Project Item 5 -->
+            <div class="project-item">
+                <img src="https://images.unsplash.com/photo-1502672260267-310329048a12?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGZvcmVzdHxlbnwwfHwwfHx8MA%3D%3D" alt="Proyecto 5"
+                    class="project-image">
+                <div class="project-overlay">
+                    <h3>Juego 2D Retro</h3>
+                    <p>Un divertido juego de plataformas con gráficos pixel-art.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
 
 </section>

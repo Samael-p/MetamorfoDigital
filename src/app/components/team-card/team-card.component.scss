@@ -31,17 +31,18 @@
   }
 
   .avatar {
-    width: 100px;
-    height: 100px;
+    width: 140px;
+    height: 140px;
     margin: 0 auto 1px;
     border-radius: 50%;
     overflow: hidden;
+    //background-color: #333;
     
 
     img {
+      width: 99%;
+      height: 99%;
       
-      height: 100%;
-      padding: 13px 0;
       object-fit: cover;
     }
   }
