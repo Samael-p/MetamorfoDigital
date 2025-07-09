@@ -12,8 +12,12 @@ $social-buttons-circle-dark-grey: #1a1d20;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  
+
 }
+
+
+
+
 
 .metaDContent{
   width:120px;
@@ -45,8 +49,7 @@ footer{
   overflow: hidden;
   transform-origin: top; /* Escalar desde la parte superior */
   transition: transform 0.3s ease-out;
- 
- 
+  
 
   .footer-column,
   .row.text-center {
@@ -82,6 +85,9 @@ footer{
       text-transform: uppercase;
     }
     .fas {
+      margin-right: 0.5rem;
+    }
+    .fab {
       margin-right: 0.5rem;
     }
   }

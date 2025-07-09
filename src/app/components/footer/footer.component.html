@@ -91,8 +91,11 @@
                     <a class="nav-link" href=""><i class="fas fa-comments"></i>Live chat</a>
                 </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="https://wa.me/59175480182?text=Hola,%20quisiera%20mas%20informacion"><i class="fas fa-envelope"></i>Contact us</a>
+                    <a class="nav-link" (click)="abrirWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Contact us
+                    </a>
                 </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="#"><i class="fas fa-star"></i>Give feedback</a>
                 </li>
@@ -104,7 +107,7 @@
     
         <div class="row text-center">
             <div class="col-md-4 box">
-                <span class="copyright quick-links">Copyright &copy; METAmorfo <script>document.write(new Date().getFullYear())</script>
+                <span class="copyright quick-links">Copyright &copy; METAmorfo {{ anioActual }}
                 </span>
             </div>
             <div class="col-md-4 box">
@@ -138,4 +141,30 @@
             </div>
         </div>
     </div>
+
+    <script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const whatsappLink = document.getElementById('whatsapp-link');
+
+    if (whatsappLink) {
+      whatsappLink.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        const phone = '59175480182';
+        const message = 'Hola, quisiera mas informacion';
+        const encodedMsg = encodeURIComponent(message);
+
+        const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+        if (isMobile) {
+          window.location.href = `https://wa.me/${phone}?text=${encodedMsg}`;
+        } else {
+          window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`, '_blank');
+        }
+      });
+    }
+  });
+</script>
+
+
 </footer>
