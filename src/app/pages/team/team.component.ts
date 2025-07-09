@@ -30,7 +30,7 @@ export class TeamComponent {
     {
       name: 'Samuel Meneses ',
       role: 'Creative Dev',
-      image: 'assets/assetsTeam/Sam.jpeg',
+      image: 'assets/assetsTeam/sam.jpeg',
       socials: [
       { icon: 'fab fa-twitter', url: 'https://twitter.com/' },
       { icon: 'fab fa-facebook-f', url: 'https://facebook.com/' },
