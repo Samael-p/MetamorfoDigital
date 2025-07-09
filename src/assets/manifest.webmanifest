@@ -1,20 +1,20 @@
 {
   "name": "Metamorfo Digital",
-  "short_name": "Metamorfo",
+  "short_name": "METAmorfo",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "transparent",
   "theme_color": "#0f172a",
   "orientation": "portrait",
   "scope": "/",
   "icons": [
     {
-      "src": "assets/assetsTeam/logoMeta.svg",
+      "src": "assets/assetsTeam/logoMeta.png",
       "sizes": "192x192",
-      "type": "image/svg"
+      "type": "image/png"
     },
     {
-      "src": "assets/assetsTeam/logoMeta.png",
+      "src": "assets/assetsTeam/logoMeta512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
