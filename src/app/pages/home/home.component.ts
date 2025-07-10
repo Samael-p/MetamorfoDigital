@@ -5,7 +5,7 @@ import { AfterViewInit, CUSTOM_ELEMENTS_SCHEMA,ViewChild,
   ElementRef,
   OnDestroy,
   Input, } from '@angular/core';
-
+import { RouterModule } from '@angular/router';
 import { WeaponWheelComponent } from '../../components/weapon-wheel/weapon-wheel.component';
 import { MetaballsComponent } from '../../components/metaballs/metaballs.component';
 import gsap from 'gsap';
@@ -24,7 +24,8 @@ interface Dot {
 
 @Component({
   selector: 'app-home',
-  imports: [ NavbarComponent, SplittingTextComponent,WeaponWheelComponent],
+  standalone: true,
+  imports: [ RouterModule,NavbarComponent, SplittingTextComponent,WeaponWheelComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -1,26 +1,19 @@
-
+<ng-container *ngIf="!isAdminPage()">
 <app-home></app-home>
-
-
-
-
 
 <div>
 <app-service ></app-service>
 </div>
-
 <div>
     <app-team ></app-team> 
 </div>
-
-
-
 <div>
     <app-proyectos></app-proyectos>
 </div>
-
 <div>
     <app-contact ></app-contact>
 </div>
-
 <app-footer ></app-footer>
+
+</ng-container>
+<router-outlet></router-outlet>

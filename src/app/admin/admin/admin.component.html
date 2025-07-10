@@ -1,0 +1,93 @@
+<section id="admin">
+<div class="admin-container">
+  <h2>Administrar Miembros del Equipo</h2>
+
+  <!-- Formulario para agregar nuevo miembro -->
+  <form (ngSubmit)="addMember()" #memberForm="ngForm" class="add-member-form">
+    <input
+      type="text"
+      placeholder="Nombre"
+      [(ngModel)]="newMember.name"
+      name="name"
+      required
+    />
+    <input
+      type="text"
+      placeholder="Rol"
+      [(ngModel)]="newMember.role"
+      name="role"
+      required
+    />
+    <input
+      type="text"
+      placeholder="URL Imagen (opcional)"
+      [(ngModel)]="newMember.image"
+      name="image"
+    />
+
+    <textarea
+    placeholder="Descripción o texto adicional"
+    [(ngModel)]="newMember.text"
+    name="text"
+  ></textarea>
+
+  <div class="socials-container">
+    <h4>Redes Sociales</h4>
+
+    <div *ngFor="let social of newMember.socials; let i = index" class="social-input-group">
+      <select [(ngModel)]="social.icon" name="socialIcon{{i}}" required>
+        <option value="fab fa-facebook">Facebook</option>
+        <option value="fab fa-whatsapp">WhatsApp</option>
+        <option value="fab fa-instagram">Instagram</option>
+        <option value="fab fa-twitter">Twitter</option>
+        <!-- Agrega más iconos que necesites -->
+      </select>
+      <input
+        type="url"
+        placeholder="URL de la red social"
+        [(ngModel)]="social.url"
+        name="socialUrl{{i}}"
+        required
+      />
+      <button type="button" (click)="removeSocial(i)">Eliminar</button>
+    </div>
+
+    <button type="button" (click)="addSocial()">Agregar Red Social</button>
+  </div>
+
+
+
+    <button type="submit" [disabled]="memberForm.invalid">Agregar Miembro</button>
+  </form>
+
+  <hr />
+
+  <!-- Lista de miembros existentes -->
+  <div *ngIf="teamMembers$ | async as teamMembers; else loading">
+    <div *ngFor="let member of teamMembers" class="member-card">
+      <img
+        *ngIf="member.image"
+        [src]="member.image"
+        alt="{{ member.name }}"
+        class="member-image"
+      />
+      <div>
+        <h3>{{ member.name }}</h3>
+        <p><strong>Rol:</strong> {{ member.role }}</p>
+      </div>
+      <button (click)="deleteMember(member.id)" class="delete-btn">
+        Eliminar
+      </button>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p>Cargando miembros...</p>
+  </ng-template>
+</div>
+
+
+<button (click)="logout()">Cerrar sesión</button>
+
+</section>
+

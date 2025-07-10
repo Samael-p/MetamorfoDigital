@@ -2,6 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { TeamCardComponent } from '../../components/team-card/team-card.component';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 @Component({
@@ -10,57 +13,42 @@ import { TeamCardComponent } from '../../components/team-card/team-card.componen
   styleUrls: ['./team.component.scss'],
    imports: [CommonModule,TeamCardComponent]
 })
-export class TeamComponent {
-   currentIndex = 0;
+export class TeamComponent implements OnInit {
+  currentIndex = 0;
   isAnimating = false;
 
-  teamMembers = [
-    {
-      name: 'METAMORFO ',
-      subtitle: 'Digital',
-      role: 'Empresa',
-      image: 'assets/assetsTeam/logoMeta.svg',
-      text: 'Conoce al equipo detras de la empresa',
-      socials: [
-      { icon: 'fab fa-facebook', url: 'https://www.facebook.com/profile.php?id=61574596280990' },
-      { icon: 'fab fa-whatsapp', url: 'https://wa.me/59175480182' },
-      { icon: 'fab fa-instagram', url: 'https://instagram.com/' }
-    ]
-    },
-    {
-      name: 'Samuel Meneses ',
-      role: 'Creative Dev',
-      image: 'assets/assetsTeam/sam.jpeg',
-      socials: [
-      { icon: 'fab fa-twitter', url: 'https://twitter.com/' },
-      { icon: 'fab fa-facebook-f', url: 'https://facebook.com/' },
-      { icon: 'fab fa-linkedin', url: 'https://linkedin.com/in/' },
-      { icon: 'fab fa-github', url: 'https://github.com/' },
-      { icon: 'fab fa-youtube', url: 'https://youtube.com/' } 
-    ]
-      
-    },
-    {
-      name: 'Name3',
-      role: 'Lead Developer',
-      image: '',
-    },
-    {
-      name: 'Name4',
-      role: 'UX Designer',
-      image: '',
-    },
-    {
-      name: 'Name5',
-      role: 'Marketing Manager',
-      image: '',
-    },
-    {
-      name: 'Name6',
-      role: 'Product Manager',
-      image: '',
+  // Miembro por defecto para mostrar en la primera tarjeta
+  defaultMember = {
+  name: 'METAMORFO',
+  subtitle: 'Digital',
+  role: 'Empresa',
+  image: 'assets/assetsTeam/logoMeta.svg',
+  text: 'Conoce al equipo detras de la empresa',
+  socials: [
+    { icon: 'fab fa-facebook', url: 'https://www.facebook.com/profile.php?id=61574596280990' },
+    { icon: 'fab fa-whatsapp', url: 'https://wa.me/59175480182' },
+    { icon: 'fab fa-instagram', url: 'https://instagram.com/' }
+  ]
+};
+
+
+  // Aquí cambias la propiedad para que sea observable (o un arreglo)
+  teamMembers: any[] = [];
+
+  constructor(private firestore: Firestore) {}
+
+  ngOnInit() {
+  const teamCollection = collection(this.firestore, 'teamMembers');
+  collectionData(teamCollection, { idField: 'id' }).subscribe(data => {
+    if (data.length > 0) {
+      // Insertar la tarjeta default al inicio y luego los datos
+      this.teamMembers = [this.defaultMember, ...data];
+    } else {
+      this.teamMembers = [this.defaultMember];
     }
-  ];
+  });
+}
+
 
   updateCarousel(index: number) {
     if (this.isAnimating) return;
