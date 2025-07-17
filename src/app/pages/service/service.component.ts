@@ -180,6 +180,17 @@ export class ServiceComponent  implements AfterViewInit {
             const placeholder = block.querySelector('.video-placeholder') as HTMLElement;
             const playerDiv = block.querySelector(`#player-${service.videoId}`) as HTMLElement;
 
+// 🔧 Forzar el tamaño del iframe generado
+          const iframe = (block.querySelector('iframe') as HTMLIFrameElement);
+          if (iframe) {
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.position = 'absolute';
+            iframe.style.top = '0';
+            iframe.style.left = '0';
+            iframe.style.border = 'none';
+          }
+
             block.addEventListener('mouseenter', () => {
               placeholder.style.opacity = '0';
               playerDiv.classList.remove('youtube-player-hidden');
