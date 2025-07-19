@@ -32,7 +32,7 @@ export class LoginComponent {
       const loggedUser = result.user;
 
       // ⚠️ Verifica que sea la persona autorizada por email
-      const authorizedEmail = 'email_de_tu_cliente@ejemplo.com';
+      const authorizedEmail = 'samm17mf@gmail.com';
       if (loggedUser.email === authorizedEmail) {
         this.router.navigate(['/admin']); // redirige al panel admin
       } else {
