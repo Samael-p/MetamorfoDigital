@@ -1,0 +1,229 @@
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(to right, #3b82f6, #9333ea); /* from-blue-500 to-purple-600 */
+            box-sizing: border-box; /* Asegura que el padding no afecte el tamaño total */
+        }
+
+        .login-container {
+            padding: 2rem; /* p-8 */
+            border-radius: 0.75rem; /* rounded-xl */
+            width: 100%;
+            max-width: 28rem; /* max-w-md */
+            box-sizing: border-box;
+            
+            /* Estilo para el glassmorfismo */
+            background-color: rgba(255, 255, 255, 0.2); /* Fondo blanco con transparencia */
+            backdrop-filter: blur(10px); /* Efecto de desenfoque */
+            -webkit-backdrop-filter: blur(10px); /* Soporte para navegadores WebKit */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); /* Sombra para profundidad */
+        }
+
+        .login-title {
+            font-size: 1.875rem; /* text-3xl */
+            font-weight: 700; /* font-bold */
+            text-align: center;
+            color: #ffffff; /* text-white */
+            margin-bottom: 2rem; /* mb-8 */
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+
+        .form-group label {
+            display: block;
+            color: #ffffff; /* text-white */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 600; /* font-semibold */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 0.5rem 1rem; /* px-4 py-2 */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* border-white/50 */
+            border-radius: 0.5rem; /* rounded-lg */
+            outline: none;
+            transition: all 0.2s ease-in-out; /* transition duration-200 */
+            background-color: rgba(255, 255, 255, 0.2); /* bg-white/20 */
+            color: #ffffff; /* text-white */
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="email"]::placeholder,
+        .form-group input[type="password"]::placeholder {
+            color: rgba(255, 255, 255, 0.7); /* placeholder-gray-200 (ajustado para glassmorfismo) */
+        }
+
+        .form-group input[type="email"]:focus,
+        .form-group input[type="password"]:focus {
+            border-color: #93c5fd; /* focus:ring-blue-300 */
+            box-shadow: 0 0 0 2px #93c5fd; /* focus:ring-2 focus:ring-blue-300 */
+        }
+
+        .form-options {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem; /* mb-6 */
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input[type="checkbox"] {
+            height: 1rem; /* h-4 */
+            width: 1rem; /* w-4 */
+            color: #93c5fd; /* text-blue-300 */
+            border-color: rgba(255, 255, 255, 0.5); /* border-white/50 */
+            border-radius: 0.25rem; /* rounded */
+            background-color: rgba(255, 255, 255, 0.2); /* bg-white/20 */
+            outline: none;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"]:focus {
+            box-shadow: 0 0 0 2px #93c5fd; /* focus:ring-blue-300 */
+        }
+
+        .remember-me label {
+            margin-left: 0.5rem; /* ml-2 */
+            display: block;
+            font-size: 0.875rem; /* text-sm */
+            color: #ffffff; /* text-white */
+        }
+
+        .forgot-password-link {
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500; /* font-medium */
+            color: #93c5fd; /* text-blue-300 */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out; /* transition duration-200 */
+        }
+
+        .forgot-password-link:hover {
+            color: #dbeafe; /* hover:text-blue-100 */
+        }
+
+        .login-button {
+            width: 100%;
+            background-color: #2563eb; /* bg-blue-600 */
+            color: #ffffff; /* text-white */
+            padding: 0.75rem 1rem; /* py-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            font-weight: 600; /* font-semibold */
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out; /* transition duration-300 transform */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        }
+
+        .login-button:hover {
+            background-color: #1d4ed8; /* hover:bg-blue-700 */
+            transform: scale(1.02); /* hover:scale-105 */
+        }
+
+        .login-button:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.5); /* focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 */
+        }
+
+        .signup-text {
+            margin-top: 2rem; /* mt-8 */
+            text-align: center;
+            color: #ffffff; /* text-white (ajustado para glassmorfismo) */
+            font-size: 0.875rem; /* text-sm */
+        }
+
+        .signup-link {
+            font-weight: 500; /* font-medium */
+            color: #93c5fd; /* text-blue-300 */
+            text-decoration: none;
+            transition: color 0.2s ease-in-out; /* transition duration-200 */
+        }
+
+        .signup-link:hover {
+            color: #dbeafe; /* hover:text-blue-100 */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .login-container {
+                padding: 1.5rem; /* Reduce padding on smaller screens */
+            }
+            .login-title {
+                font-size: 1.5rem; /* Smaller title on small screens */
+            }
+        }
+
+        .buttonFace {
+                    margin-top:20px ;
+                    width: 100%;
+                    background-color: #3b5998; /* Color de Facebook */
+                    color: #ffffff;
+                    padding: 0.75rem 1rem;
+                    border-radius: 0.5rem;
+                    font-weight: 600;
+                    border: none;
+                    cursor: pointer;
+                    transition: all 0.3s ease-in-out;
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+                }
+
+                .buttonFace:hover {
+                    background-color: #2d4373;
+                    transform: scale(1.02);
+                }
+
+                .buttonFace:focus {
+                    outline: none;
+                    box-shadow: 0 0 0 2px #3b5998, 0 0 0 4px rgba(59, 89, 152, 0.5);
+                }
+
+
+        .back-button {
+            position: fixed; /* Posiciona el botón respecto a la ventana */
+            top: 1.5rem; /* Distancia desde la parte superior */
+            right: 1.5rem; /* Distancia desde la derecha */
+            background: rgba(255, 255, 255, 0.1); /* Fondo semitransparente */
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Borde sutil */
+            color: #ffffff;
+            font-size: 1rem; /* Tamaño de fuente para el texto */
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.75rem 1.25rem; /* Padding para el botón */
+            border-radius: 0.5rem; /* Bordes redondeados */
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Espacio entre la flecha y el texto */
+            z-index: 1000; /* Asegura que esté por encima de otros elementos */
+            text-decoration: none; /* Elimina el subrayado si fuera un enlace */
+        }
+
+        .back-button:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 640px) {
+            .back-button {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.5rem 1rem;
+                font-size: 0.9rem;
+            }
+        }

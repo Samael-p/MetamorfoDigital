@@ -9,7 +9,6 @@ import { ServiceComponent } from './pages/service/service.component';
 import { TeamComponent } from './pages/team/team.component';
 import { ContactComponent } from './pages/contact/contact.component';
 import { ProyectosComponent } from './pages/proyectos/proyectos.component';
-import { AdminComponent } from './admin/admin/admin.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -33,7 +32,12 @@ export class AppComponent {
   title = 'Metamorfo-web';
    constructor(public router: Router) {}
 
-  isAdminPage(): boolean {
-    return this.router.url.startsWith('/admin');
-}
+isOthersPage(): boolean {
+    const path = this.router.url;
+    return path.startsWith('/admin') || 
+           path.startsWith('/politica-de-privacidad') || 
+           path.startsWith('/eliminacion-datos');
+  }
+
+
 }

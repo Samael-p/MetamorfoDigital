@@ -36,7 +36,7 @@ removeSocial(index: number) {
 async logout() {
   try {
     await signOut(this.auth);
-    this.router.navigate(['/login']);  // O la ruta que uses para login
+    this.router.navigate(['/']);  // O la ruta que uses para login
   } catch (error) {
     console.error('Error cerrando sesión:', error);
   }

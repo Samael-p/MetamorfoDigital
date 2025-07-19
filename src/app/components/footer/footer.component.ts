@@ -8,21 +8,20 @@ import { Component } from '@angular/core';
   
 })
 export class FooterComponent {
-abrirWhatsApp(): void {
+whatsappLink: string = '';
+
+ngOnInit() {
   const phone = '59175480182';
   const message = 'Hola, quisiera más información';
   const encodedMsg = encodeURIComponent(message);
 
   const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
 
-  if (isMobile) {
-    // Abre la app de WhatsApp en el móvil
-    window.location.href = `https://wa.me/${phone}?text=${encodedMsg}`;
-  } else {
-    // Abre WhatsApp Web en escritorio
-    window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`, '_blank');
-  }
+  this.whatsappLink = isMobile
+    ? `https://wa.me/${phone}?text=${encodedMsg}`
+    : `https://web.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`;
 }
+
 
 anioActual: number = new Date().getFullYear();
 

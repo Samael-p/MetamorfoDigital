@@ -375,6 +375,16 @@ app-navbar{
   }
 }
 
-.admin-btn{
+.ADMI{
   z-index: 14444;
+  position: absolute;
+  top:10px;
+  right: 10px;
+  text-decoration: none;
+  color: #fff;
+  text-transform: uppercase;
+
+  &:hover{
+    color: #000;
+  }
 }

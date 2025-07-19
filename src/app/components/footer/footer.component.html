@@ -91,7 +91,7 @@
                     <a class="nav-link" href=""><i class="fas fa-comments"></i>Live chat</a>
                 </li>-->
                 <li class="nav-item">
-                    <a class="nav-link" (click)="abrirWhatsApp()">
+                    <a class="nav-link" [href]="whatsappLink">
                         <i class="fab fa-whatsapp"></i> Contact us
                     </a>
                 </li>
@@ -132,7 +132,7 @@
             <div class="col-md-4 box">
                 <ul class="list-inline quick-links">
                     <li class="list-inline-item">
-                        <a href="#">Privacy Policy</a>
+                        <a href='/politica-de-privacidad'>Privacy Policy</a>
                     </li>
                     <li class="list-inline-item">
                         <a href="#">Terms of Use</a>
@@ -142,29 +142,11 @@
         </div>
     </div>
 
-    <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const whatsappLink = document.getElementById('whatsapp-link');
-
-    if (whatsappLink) {
-      whatsappLink.addEventListener('click', function (e) {
-        e.preventDefault();
-
-        const phone = '59175480182';
-        const message = 'Hola, quisiera mas informacion';
-        const encodedMsg = encodeURIComponent(message);
-
-        const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-
-        if (isMobile) {
-          window.location.href = `https://wa.me/${phone}?text=${encodedMsg}`;
-        } else {
-          window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${encodedMsg}`, '_blank');
-        }
-      });
-    }
-  });
-</script>
-
+<a  href="https://wa.me/59175480182" target="_blank" [href]="whatsappLink" class="whatsapp-btn">
+  <i class="fab fa-whatsapp"></i>
+  <span class="wave wave1"></span>
+  <span class="wave wave2"></span>
+  <span class="wave wave3"></span>
+</a>
 
 </footer>
