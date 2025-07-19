@@ -1,6 +1,16 @@
 import { Component,Input , } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+interface TeamMember {
+  id?: string;
+  name: string;
+  subtitle?: string;
+  role: string;
+  image?: string;
+  text?: string;
+  socials?: { icon: string; url: string }[];
+}
+
 @Component({
   selector: 'app-team-card',
   imports: [CommonModule],
@@ -9,7 +19,7 @@ import { CommonModule } from '@angular/common';
 })
 export class TeamCardComponent {
 
-   @Input() member: any;
+   @Input() member!: TeamMember;
   @Input() isOnline: boolean = true;
 
   get limitedSocials() {

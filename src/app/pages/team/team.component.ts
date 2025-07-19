@@ -1,54 +1,55 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { HostListener } from '@angular/core';
-import { TeamCardComponent } from '../../components/team-card/team-card.component';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { OnInit } from '@angular/core';
+import { TeamCardComponent } from '../../components/team-card/team-card.component';
 import { Observable } from 'rxjs';
 
+interface TeamMember {
+  id?: string;
+  name: string;
+  subtitle?: string;
+  role: string;
+  image?: string;
+  text?: string;
+  socials?: { icon: string; url: string }[];
+}
 
 @Component({
   selector: 'app-team',
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss'],
-   imports: [CommonModule,TeamCardComponent]
+  imports: [CommonModule, TeamCardComponent]
 })
 export class TeamComponent implements OnInit {
   currentIndex = 0;
   isAnimating = false;
 
-  // Miembro por defecto para mostrar en la primera tarjeta
-  defaultMember = {
-  name: 'METAMORFO',
-  subtitle: 'Digital',
-  role: 'Empresa',
-  image: 'assets/assetsTeam/logoMeta.svg',
-  text: 'Conoce al equipo detras de la empresa',
-  socials: [
-    { icon: 'fab fa-facebook', url: 'https://www.facebook.com/profile.php?id=61574596280990' },
-    { icon: 'fab fa-whatsapp', url: 'https://wa.me/59175480182' },
-    { icon: 'fab fa-instagram', url: 'https://instagram.com/' }
-  ]
-};
+  defaultMember: TeamMember = {
+    name: 'METAMORFO',
+    role: 'Empresa',
+    image: 'assets/assetsTeam/logoMeta.svg',
+    text: 'Conoce al equipo detras de la empresa',
+    socials: [
+      { icon: 'fab fa-facebook', url: 'https://www.facebook.com/profile.php?id=61574596280990' },
+      { icon: 'fab fa-whatsapp', url: 'https://wa.me/59175480182' },
+      { icon: 'fab fa-instagram', url: 'https://instagram.com/' }
+    ]
+  };
 
-
-  // Aquí cambias la propiedad para que sea observable (o un arreglo)
-  teamMembers: any[] = [];
+  teamMembers: TeamMember[] = [];
 
   constructor(private firestore: Firestore) {}
 
   ngOnInit() {
-  const teamCollection = collection(this.firestore, 'teamMembers');
-  collectionData(teamCollection, { idField: 'id' }).subscribe(data => {
-    if (data.length > 0) {
-      // Insertar la tarjeta default al inicio y luego los datos
-      this.teamMembers = [this.defaultMember, ...data];
-    } else {
-      this.teamMembers = [this.defaultMember];
-    }
-  });
-}
-
+    const teamCollection = collection(this.firestore, 'teamMembers');
+    collectionData(teamCollection, { idField: 'id' }).subscribe(data => {
+      if (data.length > 0) {
+        this.teamMembers = [this.defaultMember, ...data as TeamMember[]];
+      } else {
+        this.teamMembers = [this.defaultMember];
+      }
+    });
+  }
 
   updateCarousel(index: number) {
     if (this.isAnimating) return;

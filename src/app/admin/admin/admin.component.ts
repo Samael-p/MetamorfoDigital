@@ -7,6 +7,16 @@ import { Auth, signOut } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 
 
+export interface TeamMember {
+  id?: string;
+  name: string;
+  subtitle?: string;
+  role: string;
+  image?: string;
+  text?: string;
+  socials?: { icon: string; url: string }[];
+}
+
 
 @Component({
   selector: 'app-admin',
