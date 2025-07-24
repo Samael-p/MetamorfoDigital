@@ -1,48 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {  Component,ElementRef,ViewChild,AfterViewInit,Renderer2 } from '@angular/core';
 import { Firestore, collection, collectionData, addDoc, doc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Auth, signOut } from '@angular/fire/auth';
+import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-
-
-export interface TeamMember {
-  id?: string;
-  name: string;
-  subtitle?: string;
-  role: string;
-  image?: string;
-  text?: string;
-  socials?: { icon: string; url: string }[];
-}
 
 
 @Component({
   selector: 'app-admin',
   imports: [CommonModule,
-    FormsModule],
+    RouterModule],
   templateUrl: './admin.component.html',
   styleUrl: './admin.component.scss'
 })
-export class AdminComponent implements OnInit {
-  teamMembers$: Observable<any[]>;
-  newMember = { name: '', role: '', image: '',text: '',
-  socials: [] as { icon: string; url: string }[],
-};
+export class AdminComponent {
+  constructor(private router: Router, private auth: Auth) {}
 
-addSocial() {
-  this.newMember.socials.push({ icon: 'fab fa-facebook', url: '' });
-}
+  adminBoxes = [
+    {
+      title: 'Gestión de Equipos',
+      description: 'Administra las cuentas de los integrantes.',
+      route: '/admin-equipo',
+      color: 'blue'
+    },
+    {
+      title: 'Configuración del Sistema',
+      description: 'Ajusta las configuraciones globales de la aplicación.',
+       route: '',
+        image: '',
+    },
+    
+    // Puedes añadir más aquí fácilmente:
+    // {
+    //   title: 'Nuevo Cuadro',
+    //   description: 'Descripción del nuevo cuadro.',
+    //   color: 'blue'
+    // }
+  ];
 
-removeSocial(index: number) {
-  this.newMember.socials.splice(index, 1);
-}
-
-  constructor(private firestore: Firestore, private auth: Auth, private router: Router) {
-  const teamCollection = collection(this.firestore, 'teamMembers');
-  this.teamMembers$ = collectionData(teamCollection, { idField: 'id' });
-}
+  handleBoxClick(box: any): void {
+    console.log('Cuadro clickeado:', box.title);
+    // Aquí puedes manejar navegación, acciones, etc.
+  }
 async logout() {
   try {
     await signOut(this.auth);
@@ -51,22 +52,4 @@ async logout() {
     console.error('Error cerrando sesión:', error);
   }
 }
-
-
-  async addMember() {
-    const teamCollection = collection(this.firestore, 'teamMembers');
-    await addDoc(teamCollection, this.newMember);
-this.newMember = { name: '', role: '', image: '', text: '', socials: [] };
-  }
-
-  async deleteMember(id: string) {
-    const memberDoc = doc(this.firestore, `teamMembers/${id}`);
-    await deleteDoc(memberDoc);
-  }
-
-
-  ngOnInit() {}
-
-
-  
 }

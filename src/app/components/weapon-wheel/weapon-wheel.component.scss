@@ -1,123 +1,262 @@
 .wheel-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  
+  width: 100%;
+
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.wheel {
-  position: relative;
-  width: 420px;
-  height: 420px;
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    .sector {
-      opacity: 1;
-      pointer-events: auto;
-      transform: scale(1) rotate(var(--angle)) translateY(-50%);
-    }
-    .label {
-      display: none;
-    }
-  }
+/* Ocultar botones de radio */
+input[type="radio"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
 }
 
-.sector {
-  --angle: 0deg;
-  position: absolute;
-  top: 28%;
-  left: 50%;
-  width: 100px;
-  height: 100px;
-  margin: -50px 0 0 -50px;
-  transform-origin: 50% 150%;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  @media (max-width: 768px) {
-  height: 80px;
-  top: 28%;
+.cards {
+	--base-rotation: 0deg;
+	--full-circle: 360deg;
+	--radius: 22vw;
+	--duration: 300ms;
+
+	--cards-container-size: calc(var(--radius) * 1.9);
+	--thumb-size: 30px;
+	--image-size: calc(var(--radius));
+	--image-y: 0%;
+	--labels-offset: calc(var(--radius) * -1);
+	
+	--info-width: 100%;
+
+	position: relative;
+	inset: 0;
+	
+	width: var(--cards-container-size);
+	height: var(--cards-container-size);
+	aspect-ratio: 1;
+	border-radius: 50%;
   
-  }
-
-  .sector-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform-origin: center;
-    font-size: 14px;
-    text-align: center;
-    padding: 12px;
-    border-radius: 12px;
-    background: rgba(87, 87, 87, 0.308);
-    backdrop-filter: blur(10ps);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    width: 90px;
-    height: 90px;
-    cursor: pointer;
-    color: #eaeaea;
-    user-select: none;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-
-    &:hover {
-    
-      transform: scale(1.1);
-      color: #00ffff;
-      .label {
-      display: block;
-      color: black;
-      font-size: 15px;
-      font-weight: 700;
-    }
-    }
-
-    .icon {
-      font-size: 28px;
-      margin-bottom: 6px;
-      
-    }
-
-    
-  }
+	perspective: 1000px;
+	transition: transform 0.3s ease-in-out var(--duration);
+	list-style: none;
 }
 
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  
-  border-radius: 50%;
-  width: 240px;
-  height: 240px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  
-  cursor: pointer;
-  user-select: none;
-  
- 
-  transition: background 0.3s ease;
+@media (min-width: 800px) {
+	.cards {
+		--radius: 30vw;
+		--thumb-size: 40px;
+		--title-top: 1rem;
+	}
+}
+@media (min-width: 1200px) {
+	.cards {
+		--radius: 13vw;
+		--thumb-size: 50px;
+		--image-y: -20%; /* La imagen se mueve hacia arriba en pantallas grandes */
+		--info-width: min(100% - 2rem, 65%);
+	}
+}
 
-  &:hover {
-    background: rgba(0, 0, 0, 0.582);
-   
-    
-  }
-  @media (max-width: 768px) {
-  
-  }
+.cards li {
+	position: absolute;
+	inset: 0;
+	margin: 0;
+	padding: 0;
+	transform-origin: center;
+	display: grid;
+	place-content: center;
+	transform: rotate(calc(var(--i) * 360deg / var(--items)));
+	pointer-events: none;
+}
+
+.cards li > label {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+  //border: 2px solid red;
+	transform: translateY(var(--labels-offset));
+	width: var(--thumb-size);
+	height: var(--thumb-size);
+	cursor: pointer;
+	pointer-events: auto;
+	transition: var(--duration) ease-in-out;
+}
+/* Miniaturas */
+.cards li > label > img {
+	transform-origin: center;
+	width: 100%;
+	scale: var(--label-scale, 1);
+	opacity: var(--label-opacity, 1);
+	transition: scale var(--duration) ease-in-out,
+		opacity var(--duration) ease-in-out;
+}
+
+/* Animación de movimiento constante para miniaturas no seleccionadas */
+@keyframes thumb-float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(5px); } /* Flota ligeramente hacia arriba */
+    100% { transform: translateY(0); }
+}
+
+.cards li:not(:has(input:checked)) > label > img {
+    animation: thumb-float 3s infinite alternate ease-in-out;
+}
+
+/* Reducir escala de todas las miniaturas al pasar el ratón */
+.cards:has(label:hover) label {
+	--label-scale: 0.75;
+}
+/* Agrandar miniaturas a cada lado de la que se pasa el ratón */
+.cards li:has(+ li > label:hover) > label,
+.cards li:has(label:hover) + li > label {
+	--label-scale: 1.25;
+}
+/* Miniatura sobre la que se pasa el ratón */
+.cards li > label:hover img {
+	--label-scale: 1.5;
+}
+/* Imagen principal */
+.cards > li > img {
+	width: var(--image-size);
+	height: var(--image-size);
+	object-fit: contain;
+	z-index: 52;
+
+	transform: translateY(var(--image-y)); /* Eliminado scale para el zoom */
+	transition-property: opacity, scale, width, height, transform, filter;
+	transition-duration: var(--duration);
+	transition-timing-function: ease-in-out;
+	transition-delay: var(--item-delay, 0ms), var(--item-delay, 0ms), 0ms, 0ms, 0ms,
+		0ms;
+
+	pointer-events: initial;
+	opacity: var(--item-opacity, 0);
+	scale: var(--item-scale, 0); /* Revertido a scale: 0 por defecto */
+	filter: drop-shadow(0px 0px 5px rgba(255 255 255 / 0.25));
+}
+
+/* El borde y el border-radius se aplican al elemento li cuando está seleccionado */
+li:has(input:checked) {
+	--label-opacity: 0.25;
+	--label-scale: 1.5;
+	--item-scale: 1;
+	--item-opacity: 1;
+	--item-delay: calc(var(--duration) * 2);
+	--title-opacity: 1;
+	--title-y: 0;
+	--title-delay: calc(var(--duration) * 3);
+	--info-delay: calc(var(--duration) * 3); /* Revertido el retraso del texto */
+	z-index: 99;
+
+    /* Revertido el tamaño de la imagen central y la posición */
+    --image-size: calc(var(--radius)); /* Tamaño original */
+    --image-y: 0%; /* Posición original */
+
+   /* border: 2px solid red;  Borde rojo */
+    border-radius: 50%; /* Borde circular */
+}
+
+.cards > li > h2,
+.cards > li > p {
+	position: absolute;
+	left: 50%;
+	text-align: center;
+	/* Centrado horizontalmente */
+	transform: translateX(-50%);
+	transform-origin: center;
+}
+.cards > li > h2 {
+	top: var(--title-top);
+	opacity: var(--title-opacity, 0);
+	translate: 0 var(--title-y, -30px);
+	transition: var(--duration) ease-in-out var(--title-delay, 0ms);
+}
+.cards > li > p {
+	margin: 0 auto;
+	width: 60%; /* Mantenido en 60% según tu última solicitud */
+	z-index: 2;
+	font-size: clamp(0.8rem, 3.5vw + 0.05rem, 1.1rem);
+	text-wrap: balance;
+	/* Por defecto, el texto está oculto y ligeramente desplazado hacia abajo */
+    opacity: 0;
+    top: calc(50% + (var(--image-size) / 2) + 3rem + var(--image-y)); /* Posición inicial para la transición */
+	transition: opacity var(--duration) ease-in-out var(--info-delay, 0ms),
+                top var(--duration) ease-in-out var(--info-delay, 0ms);
+}
+
+/* Regla específica para el párrafo de la figura seleccionada */
+.cards li:has(input:checked) > p {
+    opacity: 1; /* Hace el texto visible */
+    /* Posición final: 1rem debajo del borde inferior de la imagen grande */
+    top: calc(50% + (var(--image-size) / 2) + 1rem + var(--image-y));
 }
 
 
-.icon img {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
+/* Rotar contenedor basado en el radio seleccionado */
+.cards:has(input:checked) {
+	transform: rotate(
+		calc(
+			var(--base-rotation) - (var(--index) * var(--full-circle) / var(--items))
+		)
+	);
+}
+/*
+Esto sería mucho más simple si pudiéramos usar valores de contador como valores de propiedades personalizadas
+*/
+.cards:has(input#item-1:checked) {
+	--index: 0;
+}
+.cards:has(input#item-2:checked) {
+	--index: 1;
+}
+.cards:has(input#item-3:checked) {
+	--index: 2;
+}
+.cards:has(input#item-4:checked) {
+	--index: 3;
+}
+.cards:has(input#item-5:checked) {
+	--index: 4;
+}
+.cards:has(input#item-6:checked) {
+	--index: 5;
+}
+.cards:has(input#item-7:checked) {
+	--index: 6;
+}
+
+/* Estilo general */
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+:root {
+	--clr-bg: #000;
+	--clr-primary: #f8f3f3; /* Color primario */
+}
+html {
+	background-color: var(--clr-bg);
+	font-family: "Abel", sans-serif;
+}
+
+body {
+	min-height: 100svh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	line-height: 1.4;
+	color: var(--clr-primary);
+	padding: 1rem;
+	margin: 0;
 }

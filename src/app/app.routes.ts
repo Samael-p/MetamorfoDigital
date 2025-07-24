@@ -9,7 +9,7 @@ import { PoliticaDePrivacidadComponent } from './pages/politica-de-privacidad/po
 import { LoginComponent } from './admin/login/login.component';
 import { AdminComponent } from './admin/admin/admin.component';
 import { authGuard } from './guards/auth.guard'; // el guard que creamos
-
+import { AdminEquipoComponent } from './admin/admin-equipo/admin-equipo.component';
 
 
 export const routes: Routes = [
@@ -25,6 +25,9 @@ export const routes: Routes = [
     path: 'politica-de-privacidad',
     component: PoliticaDePrivacidadComponent
   },
+   { path: 'admin-equipo', 
+    component: AdminEquipoComponent },
+
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', redirectTo: '' },
 ];

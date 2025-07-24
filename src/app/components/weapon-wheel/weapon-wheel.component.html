@@ -1,22 +1,13 @@
 <div class="wheel-container">
-  <div class="wheel">
-    <div
-  class="sector"
-  *ngFor="let servicio of servicios; let i = index"
-  [style.--angle]="getAngle(i) + 'deg'"
-  [style.transform]="'rotate(' + getAngle(i) + 'deg) translateY(-100%)'"
-  [style.transitionDelay]="getAnimationDelay(i)"
->
-
-      <div class="sector-content" [style.transform]="'rotate(' + (-getAngle(i)) + 'deg)'">
-        <div class="icon"> <img [src]="servicio.imagen" alt="{{ servicio.nombre }}" /></div>
-        <div class="label">{{ servicio.nombre }}</div>
-      </div>
-    </div>
-    <div class="center">
-        <div style="transform: scale(1);">
-       <img src="assets/assetsTeam/logoMeta.svg" alt="">
-    </div>
-    </div>
-  </div>
+ <ul class="cards-container cards" [style.--items]="pokemons.length">
+	<li *ngFor="let pokemon of pokemons; let i = index" [style.--i]="i" [attr.data-name]="pokemon.name">
+		<input type="radio" id="item-{{pokemon.id}}" name="gallery-item" [checked]="pokemon.id === selectedPokemonId" (change)="selectedPokemonId = pokemon.id; startAutoRotate()">
+		<label for="item-{{pokemon.id}}">
+			<img src="{{pokemon.smallImage}}" alt="Imagen pequeña de {{pokemon.name}}">
+		</label>
+		<img src="{{pokemon.largeImage}}" loading="lazy" alt="Imagen grande de {{pokemon.name}}">
+		<h2>{{pokemon.name}}</h2>
+		<p>{{pokemon.description}}</p>
+	</li>
+</ul>
 </div>

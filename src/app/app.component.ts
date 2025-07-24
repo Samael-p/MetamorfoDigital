@@ -36,7 +36,8 @@ isOthersPage(): boolean {
     const path = this.router.url;
     return path.startsWith('/admin') || 
            path.startsWith('/politica-de-privacidad') || 
-           path.startsWith('/eliminacion-datos');
+           path.startsWith('/eliminacion-datos') ||
+           path.startsWith('/admin-equipo');
   }
 
 

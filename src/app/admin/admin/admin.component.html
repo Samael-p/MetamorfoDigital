@@ -1,124 +1,23 @@
-<body>
+<section id="adminPanel">
+  <div class="container">
+    <h1>Panel de Administración</h1>
+            <button class="back-button" (click)="logout()">Cerrar sesión</button>
+ 
 
-    <section id="admin">
-        <!-- Header with Title and Logout Button -->
-        <div class="header-container">
-            <h2>Administrar Miembros del Equipo</h2>
-            <button class="btn-secondary" (click)="logout()">Cerrar sesión</button>
-        </div>
-
-        <!-- Main Content: Existing Members (Left) and Add New Member (Right) -->
-        <div class="main-content-container">
-            <!-- Left Column: Existing Members -->
-            <div class="left-column">
-                <div class="members-list">
-                    <h3>Miembros Existentes</h3>
-                    <div *ngIf="teamMembers$ | async as teamMembers; else loading">
-                        <div *ngFor="let member of teamMembers" class="member-card">
-                            <div> <!-- This div is targeted by CSS for flex layout -->
-                                <img
-                                    *ngIf="member.image"
-                                    [src]="member.image"
-                                    alt="{{ member.name }}"
-                                    class="member-image"
-                                />
-                                <div>
-                                  <h3>{{ member.name }}</h3>
-                                  <p><strong>Rol:</strong> {{ member.role }}</p>
-                                  
-                                  <p *ngIf="member.text" class="member-description">
-                                    {{ member.text }}
-                                  </p>
-
-                                  <div class="member-socials" *ngIf="member.socials && member.socials.length > 0">
-                                    <a
-                                      *ngFor="let social of member.socials"
-                                      [href]="social.url"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      class="social-link"
-                                    >
-                                      <i [class]="social.icon"></i>
-                                    </a>
-                                  </div>
-                                </div>
-
-                            </div>
-                            <button (click)="deleteMember(member.id)" class="delete-btn btn-danger">
-                                Eliminar
-                            </button>
-                        </div>
-                    </div>
-                    <ng-template #loading>
-                        <p>Cargando miembros...</p>
-                    </ng-template>
-                </div>
-            </div>
-
-            <!-- Right Column: Add New Member Form -->
-            <div class="right-column">
-                <!-- Formulario para agregar nuevo miembro -->
-                <form (ngSubmit)="addMember()" #memberForm="ngForm" class="add-member-form">
-                    <h3>Agregar Nuevo Miembro</h3>
-                    <input
-                        type="text"
-                        placeholder="Nombre"
-                        [(ngModel)]="newMember.name"
-                        name="name"
-                        required
-                    />
-                    <input
-                        type="text"
-                        placeholder="Rol"
-                        [(ngModel)]="newMember.role"
-                        name="role"
-                        required
-                    />
-
-                    <input
-                        type="text"
-                        placeholder="URL Imagen (opcional)"
-                        [(ngModel)]="newMember.image"
-                        name="image"
-                        id="memberImageUrl"
-                        oninput="previewImage()"
-                    />
-
-                    <textarea
-                        placeholder="Descripción o texto adicional"
-                        [(ngModel)]="newMember.text"
-                        name="text"
-                    ></textarea>
-
-                    <div class="socials-container">
-                        <h4>Redes Sociales</h4>
-
-                        <div *ngFor="let social of newMember.socials; let i = index" class="social-input-group">
-                            <select [(ngModel)]="social.icon" name="socialIcon{{i}}" required>
-                                <option value="fab fa-facebook">Facebook</option>
-                                <option value="fab fa-whatsapp">WhatsApp</option>
-                                <option value="fab fa-instagram">Instagram</option>
-                                <option value="fab fa-twitter">Twitter</option>
-                                <option value="fab fa-github">GitHub</option>
-                                <!-- Agrega más iconos que necesites -->
-                            </select>
-                            <input
-                                type="url"
-                                placeholder="URL de la red social"
-                                [(ngModel)]="social.url"
-                                name="socialUrl{{i}}"
-                                required
-                            />
-                            <button type="button" (click)="removeSocial(i)" class="btn-secondary">Eliminar</button>
-                        </div>
-
-                        <button type="button" (click)="addSocial()" class="btn-secondary" style="width: 100%; margin-top: 1rem;">Agregar Red Social</button>
-                    </div>
-
-                    <button type="submit" [disabled]="memberForm.invalid" class="btn-primary" style="width: 100%;">Agregar Miembro</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-</body>
+    <div class="boxes-container">
+      <div
+        class="admin-box-wrapper"
+        *ngFor="let box of adminBoxes"
+      >
+        <a
+          class="admin-box"
+          [ngClass]="box.color"
+         [routerLink]="box.route"
+        >
+          <h2>{{ box.title }}</h2>
+          <p>{{ box.description }}</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
