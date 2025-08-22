@@ -1,108 +1,130 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
-
-interface Pokemon {
-  id: string;
-  name: string;
-  smallImage: string;
-  largeImage: string;
-  description: string;
+interface Icon {
+  src: string;
+  text: string;
+  url: string; // ruta interna
 }
 
 @Component({
   selector: 'app-weapon-wheel',
-  imports: [CommonModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './weapon-wheel.component.html',
   styleUrl: './weapon-wheel.component.scss'
 })
 export class WeaponWheelComponent implements OnInit, OnDestroy {
+  private intervalId: any;     
+  private startTimeout: any;   
+  private pauseTimeout: any;   
 
-  // Lista de Pokémon que se mostrarán en la galería
-  pokemons: Pokemon[] = [
-    {
-      id: '1',
-      name: 'METAmorfo',
-      smallImage: 'assets/assetsTeam/logoMeta.svg',
-      largeImage: 'assets/assetsTeam/logoMeta.svg',
-      description: 'text here'
-    },
-    {
-      id: '2',
-      name: 'Desarrollo web',
-      smallImage: 'assets/assetsService/webDev.png',
-      largeImage: 'assets/assetsService/webDev.png',
-      description: 'text here'
-    },
-    {
-      id: '3',
-      name: '3D',
-     smallImage: 'assets/assetsService/3D.png',
-      largeImage: 'assets/assetsService/3D.png',
-      description: 'text here'
-     },
-    {
-      id: '4',
-      name: 'Branding',
-     smallImage: 'assets/assetsService/Branding.png',
-      largeImage: 'assets/assetsService/Branding.png',
-      description: 'text here'
-     },
-    {
-      id: '5',
-      name: 'Automatización de procesos',
-      smallImage: 'assets/assetsService/Automatizacion.png',
-      largeImage: 'assets/assetsService/Automatizacion.png',
-      description: 'text here'
-     },
-     {
-      id: '6',
-      name: 'Producción multimedia',
-      smallImage: 'assets/assetsService/Producción Multimedia.png',
-      largeImage: 'assets/assetsService/Producción Multimedia.png',
-      description: 'text here'
-     },
-     {
-      id: '7',
-      name: 'Cursos y Talleres',
-      smallImage: 'assets/assetsService/Cursos y Talleres.png',
-      largeImage: 'assets/assetsService/Cursos y Talleres.png',
-      description: 'text here'
-     },
-  ];//modificar en scss si se agrega otro item 
-  // .cards:has(input#item-1:checked) 
+  icons: Icon[] = [
+    { src: "assets/assetsTeam/logoMeta.svg", 
+      text: "Metamorfo Digital", url: "/politica-de-privacidad" },
+    { src: "assets/assetsService/Branding.webp", text: "Branding", url: "/branding" },
+    { src: "assets/assetsService/3D.webp", text: "Impreciones 3D", url: "/impresiones" },
+    { src: "assets/assetsService/Automatizacion.webp", text: "Automatizacion", url: "/automatizacion" },
+    { src: "assets/assetsService/Cursos-y-Talleres.webp", text: "Cursos y Talleres", url: "/cursos" },
+    { src: "assets/assetsService/Producción-Multimedia.webp", text: "Producción Multimedia", url: "/multimedia" },
+    { src: "assets/assetsService/webDev.webp", text: "Desarrollo Web", url: "/web" },
+  ];
 
-  // ID del Pokémon actualmente seleccionado (el que está en el centro)
-  selectedPokemonId: string = '';
-  private intervalId: any; // Para almacenar el ID del intervalo de rotación
+  currentIndex: number = 0;
+  center: Icon = this.icons[0];
 
-  constructor() { }
+  centerAnim: string = 'fade-in';
+  textAnim: string = 'text-fade-in';
 
-  ngOnInit(): void {
-    // Establecer el primer Pokémon como seleccionado inicialmente al cargar la página
-    if (this.pokemons.length > 0) {
-      this.selectedPokemonId = this.pokemons[0].id;
-    }
-    this.startAutoRotate(); // Iniciar la rotación automática
+  radius: number = 0; 
+
+  ngOnInit() {
+    this.setResponsiveRadius();
+    this.updatePositions();
+    window.addEventListener('resize', this.onResize);
+    setTimeout(() => this.updatePositions(), 0);
+
+    // Delay inicial antes de empezar el carrusel
+    this.startTimeout = setTimeout(() => {
+      this.startAutoNext();
+    }, 3000);
   }
 
   ngOnDestroy(): void {
-    // Limpiar el intervalo cuando el componente se destruye para evitar fugas de memoria
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-    }
+    clearInterval(this.intervalId);
+    clearTimeout(this.startTimeout);
+    clearTimeout(this.pauseTimeout);
+    window.removeEventListener('resize', this.onResize);
   }
 
-  // Función para iniciar o reiniciar la rotación automática de los Pokémon
-  startAutoRotate(): void {
-    if (this.intervalId) {
-      clearInterval(this.intervalId); // Limpiar cualquier intervalo existente
-    }
+  /** Selecciona la imagen que estará en el centro */
+  setActive(index: number) {
+    this.animateChange(index);
 
+    clearTimeout(this.pauseTimeout);
+    clearInterval(this.intervalId);
+
+    // Mantener 5 segundos antes de continuar
+    this.pauseTimeout = setTimeout(() => {
+      this.startAutoNext();
+    }, 5000);
+  }
+
+  startAutoNext() {
     this.intervalId = setInterval(() => {
-      const currentPokemonIndex = this.pokemons.findIndex(p => p.id === this.selectedPokemonId);
-      const nextIndex = (currentPokemonIndex + 1) % this.pokemons.length;
-      this.selectedPokemonId = this.pokemons[nextIndex].id;
-    }, 5000); // Cambiar de Pokémon cada 3 segundos
+      this.next();
+    }, 3000);
   }
+
+  next() {
+    const nextIndex = (this.currentIndex + 1) % this.icons.length;
+    this.animateChange(nextIndex);
+  }
+
+  animateChange(index: number) {
+    this.centerAnim = 'fade-out';
+    this.textAnim = 'text-fade-out';
+
+    setTimeout(() => {
+      this.currentIndex = index;
+      this.center = this.icons[index];
+      this.centerAnim = 'fade-in';
+      this.textAnim = 'text-fade-in';
+      this.updatePositions();
+    }, 500);
+  }
+
+  onResize = () => {
+    this.setResponsiveRadius();
+    this.updatePositions();
+  }
+
+  setResponsiveRadius() {
+    const width = window.innerWidth;
+    if (width < 500) this.radius = 100;
+    else if (width < 900) this.radius = 140;
+    else this.radius = 200;
+  }
+
+  updatePositions() {
+  const orbitDiv = document.querySelector('.orbit') as HTMLElement;
+  if (!orbitDiv) return;
+
+  const orbitImgs = orbitDiv.querySelectorAll('img');
+  const total = orbitImgs.length;
+  const angleStep = (2 * Math.PI) / total;
+
+  orbitImgs.forEach((img, i) => {
+    const relativeIndex = (i - this.currentIndex + total) % total;
+    const angle = relativeIndex * angleStep - Math.PI / 2;
+
+    const x = this.radius * Math.cos(angle);
+    const y = this.radius * Math.sin(angle);
+    const deg = (angle * 180 / Math.PI) + 90;
+
+    // Centrar la miniatura usando translate(-50%, -50%)
+    (img as HTMLElement).style.transform = `translate(${x}px, ${y}px) translate(-50%, -120%) rotate(${deg}deg)`;
+  });
+}
 }

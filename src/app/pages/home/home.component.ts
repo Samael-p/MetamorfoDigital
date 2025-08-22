@@ -25,7 +25,7 @@ interface Dot {
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ RouterModule,NavbarComponent, SplittingTextComponent,WeaponWheelComponent],
+  imports: [ RouterModule,NavbarComponent,WeaponWheelComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

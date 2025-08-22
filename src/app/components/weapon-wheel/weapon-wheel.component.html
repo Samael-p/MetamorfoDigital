@@ -1,13 +1,29 @@
-<div class="wheel-container">
- <ul class="cards-container cards" [style.--items]="pokemons.length">
-	<li *ngFor="let pokemon of pokemons; let i = index" [style.--i]="i" [attr.data-name]="pokemon.name">
-		<input type="radio" id="item-{{pokemon.id}}" name="gallery-item" [checked]="pokemon.id === selectedPokemonId" (change)="selectedPokemonId = pokemon.id; startAutoRotate()">
-		<label for="item-{{pokemon.id}}">
-			<img src="{{pokemon.smallImage}}" alt="Imagen pequeña de {{pokemon.name}}">
-		</label>
-		<img src="{{pokemon.largeImage}}" loading="lazy" alt="Imagen grande de {{pokemon.name}}">
-		<h2>{{pokemon.name}}</h2>
-		<p>{{pokemon.description}}</p>
-	</li>
-</ul>
+<div class="container">
+  <!-- Imagen central y descripción -->
+  <div class="center-wrapper">
+    <img 
+      [src]="center.src" 
+      alt="{{center.text}}" 
+      class="center-img" 
+      [ngClass]="centerAnim"
+    />
+
+    <h3 class="center-text" [ngClass]="textAnim">{{center.text}}</h3>
+
+    <!-- Botón para navegar -->
+    <button class="center-btn" [routerLink]="center.url">
+      Ver más
+    </button>
+  </div>
+
+  <!-- Órbita con imágenes pequeñas -->
+  <div class="orbit">
+    <img 
+      *ngFor="let icon of icons; let i = index"
+      [src]="icon.src"
+      [title]="icon.text"
+      [class.active]="i === currentIndex"
+      (click)="setActive(i)"
+    />
+  </div>
 </div>
