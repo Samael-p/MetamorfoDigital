@@ -102,7 +102,7 @@ export class WeaponWheelComponent implements OnInit, OnDestroy {
 
   setResponsiveRadius() {
     const width = window.innerWidth;
-    if (width < 500) this.radius = 100;
+    if (width < 500) this.radius = 150;
     else if (width < 900) this.radius = 140;
     else this.radius = 200;
   }
