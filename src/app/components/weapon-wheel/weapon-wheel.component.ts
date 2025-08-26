@@ -21,14 +21,41 @@ export class WeaponWheelComponent implements OnInit, OnDestroy {
   private pauseTimeout: any;   
 
   icons: Icon[] = [
-    { src: "assets/assetsTeam/logoMeta.svg", 
-      text: "Metamorfo Digital", url: "/politica-de-privacidad" },
-    { src: "assets/assetsService/Branding.webp", text: "Branding", url: "/branding" },
-    { src: "assets/assetsService/3D.webp", text: "Impreciones 3D", url: "/impresiones" },
-    { src: "assets/assetsService/Automatizacion.webp", text: "Automatizacion", url: "/automatizacion" },
-    { src: "assets/assetsService/Cursos-y-Talleres.webp", text: "Cursos y Talleres", url: "/cursos" },
-    { src: "assets/assetsService/Producción-Multimedia.webp", text: "Producción Multimedia", url: "/multimedia" },
-    { src: "assets/assetsService/webDev.webp", text: "Desarrollo Web", url: "/web" },
+    { 
+      src: "assets/assetsTeam/logoMeta.svg", 
+      text: "Metamorfo Digital", 
+      url: "/politica-de-privacidad" 
+    },
+    { 
+      src: "assets/assetsService/Branding.webp", 
+      text: "Branding", 
+      url: "/branding" 
+    },
+    { 
+      src: "assets/assetsService/3D.webp", 
+      text: "Impreciones 3D", 
+      url: "/impresiones" 
+    },
+    { 
+      src: "assets/assetsService/Automatizacion.webp", 
+      text: "Automatizacion", 
+      url: "/automatizacion" 
+    },
+    { 
+      src: "assets/assetsService/Cursos-y-Talleres.webp", 
+      text: "Cursos y Talleres", 
+      url: "/cursos" 
+    },
+    { 
+      src: "assets/assetsService/Producción-Multimedia.webp", 
+      text: "Producción Multimedia", 
+      url: "/multimedia" 
+    },
+    { 
+      src: "assets/assetsService/webDev.webp", 
+      text: "Desarrollo Web", 
+      url: "/web" 
+    },
   ];
 
   currentIndex: number = 0;
