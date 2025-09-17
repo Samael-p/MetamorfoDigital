@@ -20,7 +20,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc3: 'SEO on-page y analítica integrada',
       Desc4: 'Conexión nativa con CRM y automatización de leads',
 
-      videoId: 'yxigH7sFQoQ',
+      videoId: '',
       placeholder: 'assets/assetsService/webDev.png',
       iconColor: 'text-blue-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
@@ -34,7 +34,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc2:'Impresión 3D (DFM, SLA) de prototipos y piezas finales',
       Desc3:'Post procesado, lijado, pintado y ensamblaje',
 
-      videoId: 'YM1kGZX2NqE',
+      videoId: '',
       placeholder: 'https://placehold.co/600x350/28a745/ffffff?text=Dise%C3%B1o+Gr%C3%A1fico',
       iconColor: 'text-green-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
@@ -48,7 +48,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc2:'Diseño UX/UI para webs y apps',
       Desc3:'Planillas de material gráfico (redes, papelería digital)',
       Desc4:'Mockups interactivos en Figma con componentes reutilizables',
-      videoId: 'YM1kGZX2NqE',
+      videoId: '',
       placeholder: 'assets/assetsService/webDev.png',
       iconColor: 'text-red-600',
       icon: `<svg fill="black" stroke="currentColor" ... ></svg>`,
@@ -63,7 +63,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc3:'Flujos automatizados de marketing (email, SMS, notificaciones)',
       Desc4:'Dashboards personalizados con métricas clave',
 
-      videoId: 'h4qpl73Asno',
+      videoId: '',
       placeholder: 'https://placehold.co/600x350/dc3545/ffffff?text=Consultor%C3%ADa+SEO',
       iconColor: 'text-red-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
@@ -78,7 +78,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc3:'Fotografía de producto y lifestyle',
       Desc4:'Integración de renders 3D en piezas audiovisuales',
 
-      videoId: '1u03j0qZFgY',
+      videoId: '',
       placeholder: 'https://placehold.co/600x350/dc3545/ffffff?text=Consultor%C3%ADa+SEO',
       iconColor: 'text-red-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
@@ -93,7 +93,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc3:'Certificación interna con aval de Metamorfo Digital',
       Desc4:'Acceso a sandbox de prácticas y mentorías post-curso',
 
-      videoId: 'FaYmELGj_0c',
+      videoId: '',
       placeholder: 'https://placehold.co/600x350/dc3545/ffffff?text=Consultor%C3%ADa+SEO',
       iconColor: 'text-red-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
@@ -108,7 +108,7 @@ export class ServiceComponent  implements AfterViewInit {
       Desc3:'Artículos promocionales con tu logo o diseño',
       Desc4:'Diseño gráfico, previsualización y entrega rápida',
 
-      videoId: '1u03j0qZFgY',
+      videoId: '',
       placeholder: 'https://placehold.co/600x350/dc3545/ffffff?text=Consultor%C3%ADa+SEO',
       iconColor: 'text-red-600',
       icon: `<svg fill="none" stroke="currentColor" ... ></svg>`,
